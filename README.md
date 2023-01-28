@@ -1,4 +1,4 @@
-# Tab Limiter
+# CPS Tab Limiter
 
 ### Forked from Matthias Vogt's Tab Limiter extension for Chrome.
 
