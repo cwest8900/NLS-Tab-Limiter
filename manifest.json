@@ -1,8 +1,8 @@
 {
-	"name": "Tab Limiter",
-	"description": "Limit the number of open tabs – in total and per window",
-	"version": "0.3.0",
-	"author": "Matthias Vogt",
+	"name": "CPS Tab Limiter",
+	"description": "Manifest V3 port for Coweta Public Schools. Limits number of open tabs.",
+	"version": "0.3.1",
+	"author": "Matthias Vogt, Modified by Isaiah Jared",
 	"homepage_url": "https://github.com/matthias-vogt/tab-limiter",
 
 	"icons": {
@@ -10,7 +10,7 @@
 		"128": "icons/128.png"
 	},
 
-	"browser_action": {
+	"action": {
 		"default_icon": {
 			"48": "icons/48.png",
 			"128": "icons/128.png"
@@ -18,15 +18,12 @@
 		"default_popup": "options.html",
 		"default_title": "Tab Limiter"
 	},
-	"options_page": "options.html",
+	"options_ui": "options.html",
 	"background": {
-		"scripts": [
-			"background.js"
-		]
+		"service_worker": "background.js"
 	},
 	"permissions": [
 		"storage"
 	],
-
-	"manifest_version": 2
+	"manifest_version": 3
 }
