@@ -1,59 +1,10 @@
 <!doctype html>
-
 <head>
-	<title>Tab Limiter's Popup</title>
-
+	<title>CPS Tab Limiter</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="options.css">
-	<script src="options.js"></script>
 </head>
-
 <body>
-	<h1>Options</h1>
-	<div id="options">
-		<input id="maxTotal" type="number" min="1" max="1337">
-		<label for="maxTotal">Max. total tabs</label>
-
-		<input id="maxWindow" type="number" min="1" max="1337">
-		<label for="maxWindow">Max. tabs in one window</label>
-
-		<input id="displayBadge" type="checkbox">
-		<label for="displayBadge" id="displayBadgeLabel">Show remaining tabs badge</label>
-
-		<input id="countPinnedTabs" type="checkbox">
-		<label for="countPinnedTabs" id="countPinnedTabsLabel">Count pinned tabs</label>
-
-		<input id="exceedTabNewWindow" type="checkbox">
-		<label for="exceedTabNewWindow" id="exceedTabNewWindowLabel">When window limit is hit, open tab in new window</label>
-
-		<input class="isDependedOnByNextOption" id="displayAlert" type="checkbox">
-		<label for="displayAlert" id="displayAlertLabel">Display alert box</label>
-
-		<input id="alertMessage" type="text">
-		<label for="alertMessage">Alert box message</label>
-	</div>
-
-
-	<input id="info" type="checkbox">
-	<label for="info">{Placeholders}</label>
-	<div class="container">
-		<p>You can use <code>{<em>name</em>}</code> syntax for placeholders in the alert box message.</p>
-		<dl>
-			<dt>{place}</dt>
-			<dd>"one window" or "total", depending on where there were too many tabs. If both, uses "total".</dd>
-			<dt>{maxPlace}</dt>
-			<dd>maxTotal or maxWindow, depending on where there were too many tabs. If both, uses "total".</dd>
-
-			<dt>{maxTotal}</dt>
-			<dd>Max. number of total tabs</dd>
-			<dt>{maxWindow}</dt>
-			<dd>Max. number of tabs in one window</dd>
-		</dl>
-	</div>
-
-	<p id="status">Change values to update them</p>
-
-	<p class="message hidden">
-		Hello everyone, welcome to version 0.3.0! See the changelog at the <a href="https://github.com/matthias-vogt/tab-limiter/releases" target="_blank">github repo</a>. Thanks for using Tab Limiter! :)
-	</p>
+	<h1>CPS Tab Limiter</h1>
+	<p>Devices with this extension are currently limited to 10 tabs in total (across all windows).</p>
 </body>
