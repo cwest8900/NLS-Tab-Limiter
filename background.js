@@ -15,7 +15,7 @@ const totalRemaining = options =>
 
 const updateBadge = options => {
 	if (!options.displayBadge) {
-		browser.browserAction.setBadgeText({ text: "" })
+		browser.action.setBadgeText({ text: "" })
 		return;
 	}
 
@@ -23,7 +23,7 @@ const updateBadge = options => {
 	.then(remaining => {
 		// console.log(remaining)
 		// remaining = [remainingInWindow, remainingInTotal]
-		browser.browserAction.setBadgeText({
+		browser.action.setBadgeText({
 			text: Math.min(...remaining).toString()
 		})
 	})
@@ -104,7 +104,9 @@ const displayAlert = (options, place) => new Promise((res, rej) => {
 		/{\s*(\S+)\s*}/g,
 		replacer
 	)
-	alert(renderedMessage);
+	//alert(renderedMessage);
+	// To my knowledge, the alert function is deprecated as of Manifest V3; will need to investigate a fix
+	// or alternative solution for this in the future. However, this is not immediately pressing.
 })
 
 let tabCount = -1
@@ -133,15 +135,6 @@ const updateTabCount = () => new Promise(res => browser.tabs.query({}, tabs => {
 
 let passes = 0;
 
-const handleExceedTabs = (tab, options, place) => {
-	console.log(place)
-	if (options.exceedTabNewWindow && place === "window") {
-		browser.windows.create({ tabId: tab.id, focused: true});
-	} else {
-		browser.tabs.remove(tab.id);
-	}
-}
-
 const handleTabCreated = tab => options => {
 	return Promise.race([
 		detectTooManyTabsInWindow(options),
@@ -158,7 +151,7 @@ const handleTabCreated = tab => options => {
 		displayAlert(options, place) // alert about opening too many tabs
 		if (amountOfTabsCreated === 1) {
 			// if exactly one tab was created, remove this tab
-			handleExceedTabs(tab, options, place);
+			browser.tabs.remove(tab.id);
 			app.update()
 		} else if (amountOfTabsCreated > 1) {
 			// if more than one tab was created, don't remove the tab and let
@@ -169,7 +162,7 @@ const handleTabCreated = tab => options => {
 		} else if (amountOfTabsCreated === -1) {
 			// if the users spams ctrl+t to create multiple tabs and one was
 			// just removed by this extension, remove the other tabs as well
-			handleExceedTabs(tab, options, place);
+			browser.tabs.remove(tab.id);
 			app.update()
 		} else {
 			// should never happen
@@ -182,13 +175,12 @@ const app = {
 	init: function() {
 		browser.storage.sync.set({
 			defaultOptions: {
-				maxTotal: 50,
-				maxWindow: 20,
-				exceedTabNewWindow: false,
+				maxTotal: 10,
+				maxWindow: 10,
 				displayAlert: true,
-				countPinnedTabs: false,
-				displayBadge: false,
-				alertMessage: "You decided not to open more than {maxPlace} tabs in {place}"
+				countPinnedTabs: true,
+				displayBadge: true,
+				alertMessage: "You have reached the limit of 10 tabs overall."
 			}
 		});
 
