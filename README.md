@@ -1,5 +1,8 @@
 # Tab Limiter
 
-![Screenshot](https://raw.githubusercontent.com/matthias-vogt/tab-limiter/master/screenshot.png)
+### Forked from Matthias Vogt's Tab Limiter extension for Chrome.
 
-Chrome extension to limit the number of open tabs – in total and per window.
+This fork has been adjusted to work with Manifest V3, as V2 will be deprecated in 2023. Most of the minor changes
+involve removing the form fields and changing V2 API calls to use the newer V3 ones. The form removal is to force
+a set amount of tabs as defined in background.js, since this extension will primarily be aimed towards preventing
+tab abuse on student-issued Chromebooks.
