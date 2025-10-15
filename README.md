@@ -1,4 +1,4 @@
-# CPS Tab Limiter
+# NLS Tab Limiter
 
 ### Forked from iljared98's Tab Limiter extension for Chrome.
 
